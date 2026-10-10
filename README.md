@@ -28,3 +28,10 @@ The trade-off here is build time: the library uses prefix-doubling rather than t
 The library treats strings as sequences of UTF-16 code units, which is how JavaScript represents them. Characters outside the Basic Multilingual Plane (e.g. most emoji and many musical symbols) are two code units, and are ordered by their surrogate pairs — consistent with `Array.prototype.sort` on strings, but not with a code-point ordering. If you need code-point ordering, normalize your input to a `String` of BMP characters first.
 
 The empty pattern matches at every position from `0` to `text.length` inclusive, which is the conventional set-theoretic definition and what callers usually want for counting. If your use case expects `[]` for the empty pattern, filter it before calling.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
