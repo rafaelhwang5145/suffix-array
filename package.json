@@ -1,6 +1,6 @@
 {
   "name": "suffix-array",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Constructs a sorted array of suffix start indices for fast substring search and repetition detection in a body of text.",
   "type": "module",
   "main": "src/index.js",
